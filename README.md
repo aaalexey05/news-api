@@ -193,13 +193,7 @@ notepad .env
 
 ```
 FLASK_ENV=development
-```
-
-```python
 SECRET_KEY=your-secret-key-here
-```
-
-```python
 DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/database-name
 ```
 
