@@ -19,12 +19,21 @@ REST API для новостного портала, построенное на
 ## Установка и запуск
 #### macOS
 - Установка через Homebrew
-```brew install postgresql```
+```
+brew install postgresql
+```
 - Запуск службы
-```brew services start postgresql```
+```
+brew services start postgresql
+```
 - Добавление в PATH
-1. ```echo 'export PATH="/opt/homebrew/opt/postgresql/bin:$PATH"' >> ~/.zshrc```
-2. ```source ~/.zshrc```
+```
+echo 'export PATH="/opt/homebrew/opt/postgresql/bin:$PATH"' >> ~/.zshrc
+```
+
+```
+source ~/.zshrc
+```
 
 #### Windows
 1. Скачайте установщик PostgreSQL с [официального сайта](https://www.postgresql.org/download/windows/)
@@ -34,14 +43,27 @@ REST API для новостного портала, построенное на
 
 #### Linux (Ubuntu/Debian)
 1. Обновление пакетов 
-- ```sudo apt update```
+```
+sudo apt update
+```
+
 2. Установка PostgreSQL 
-- ```sudo apt install postgresql postgresql-contrib```
+```
+sudo apt install postgresql postgresql-contrib
+```
+
 3. Запуск службы 
-- ```sudo systemctl start postgresql```
-- ```sudo systemctl enable postgresql```
+```
+sudo systemctl start postgresql
+```
+```
+sudo systemctl enable postgresql
+```
+
 4. Проверка статуса 
--```sudo systemctl status postgresql```
+```
+sudo systemctl status postgresql
+```
 
 ---
 ### Шаг 2: Клонирование проекта
@@ -53,40 +75,68 @@ git clone https://github.com/yourusername/news-api.git
 cd news-api
 ```
 
-
 ---
 
 ### Шаг 3: Создание виртуального окружения
 #### macOS / Linux
-- Создание виртуального окружения ```python3 -m venv .venv```
-- Активация ```source .venv/bin/activate```
+- Создание виртуального окружения 
+```
+python3 -m venv .venv
+```
+- Активация 
+```
+source .venv/bin/activate
+```
 
 #### Windows
-- Создание виртуального окружения ```python -m venv .venv```
-- Активация (PowerShell) ```.venv\Scripts\Activate.ps1```
-- Или для CMD ```.venv\Scripts\activate.bat```
+- Создание виртуального окружения 
+```
+python -m venv .venv
+```
+- Активация (PowerShell) 
+```
+.venv\Scripts\Activate.ps1
+```
+- Или для CMD 
+```
+.venv\Scripts\activate.bat
+```
 
 ---
 
 ### Шаг 4: Установка зависимостей
-1. ```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 **Если возникает ошибка с psycopg:**
 - Альтернативная установка
-1. ```pip install --upgrade pip```
-2. ```pip install "psycopg[binary]"```
+```
+pip install --upgrade pip
+```
+```
+pip install "psycopg[binary]"
+```
 
 ---
 
 ### Шаг 5: Создание базы данных
 
 #### macOS / Linux
-1. Подключение к PostgreSQL ```psql postgres```
-2. Для Linux: ```sudo -u postgres psql```
+1. Подключение к PostgreSQL 
+```
+psql postgres
+```
+2. Для Linux: 
+```
+sudo -u postgres psql
+```
 
 
 #### Windows
 1. Через командную строку
-```psql -U postgres```
+```
+psql -U postgres
+```
 2. Введите пароль, который указали при установке
 
 
@@ -112,7 +162,6 @@ GRANT ALL PRIVILEGES ON DATABASE newsdb TO newsdbuser;
 
 - Выход: ```\q```
 
-
 ---
 
 ### Шаг 6: Настройка `.env` файла
@@ -120,13 +169,23 @@ GRANT ALL PRIVILEGES ON DATABASE newsdb TO newsdbuser;
 
 #### macOS / Linux
 - Создание файла 
-1. ```touch .env```
-2. ```nano .env```
+```
+touch .env
+```
+
+```
+nano .env
+```
 
 #### Windows
 - Создание файла
-1. ```New-Item .env -ItemType File```
-2. ```notepad .env```
+```
+New-Item .env -ItemType File
+```
+
+```
+notepad .env
+```
 
 ---
 
@@ -149,34 +208,63 @@ DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/database-name
 ### Шаг 7: Установка переменных окружения
 
 #### macOS / Linux
-```export FLASK_APP=run.py```
-```export FLASK_ENV=development```
+```
+export FLASK_APP=run.py
+```
+
+```
+export FLASK_ENV=development
+```
 
 #### Windows (PowerShell)
-```$env:FLASK_APP="run.py"```
-```$env:FLASK_ENV="development"```
+```
+$env:FLASK_APP="run.py"
+```
+
+```
+$env:FLASK_ENV="development"
+```
 
 #### Windows (CMD)
-```set FLASK_APP=run.py```
-```set FLASK_ENV=development```
+```
+set FLASK_APP=run.py
+```
+
+```
+set FLASK_ENV=development
+```
 
 ---
 
 ### Шаг 8: Инициализация базы данных
 1. Инициализация миграций
-```flask db init```
+```
+flask db init
+```
 2. Создание миграции
-```flask db migrate -m "Initial migration"```
+```
+flask db migrate -m "Initial migration"
+```
 3. Применение миграции
-```flask db upgrade```
+```
+flask db upgrade
+```
 
 **Если возникает ошибка "Directory migrations already exists":**
 - Необходимо удалить папку migrations и попробовать снова
-1. ```rm -rf migrations``` # macOS/Linux
-1. ```rmdir /s migrations``` # Windows
+- # macOS/Linux
+```
+rm -rf migrations
+``` 
+- # Windows 
+```
+rmdir /s migrations
+``` 
 
 ### Шаг 9: Запуск приложения
-```python run.py```
+```
+python run.py
+```
 В основной директории есть файл run.py, в случае, если порт уже занят, его можно поменять:
 
 ```python
