@@ -23,8 +23,8 @@ REST API для новостного портала, построенное на
 - Запуск службы
 ```brew services start postgresql```
 - Добавление в PATH
-```echo 'export PATH="/opt/homebrew/opt/postgresql/bin:$PATH"' >> ~/.zshrc```
-```source ~/.zshrc```
+1. ```echo 'export PATH="/opt/homebrew/opt/postgresql/bin:$PATH"' >> ~/.zshrc```
+2. ```source ~/.zshrc```
 
 #### Windows
 1. Скачайте установщик PostgreSQL с [официального сайта](https://www.postgresql.org/download/windows/)
@@ -33,11 +33,15 @@ REST API для новостного портала, построенное на
 4. После установки PostgreSQL будет доступен через меню Пуск
 
 #### Linux (Ubuntu/Debian)
-1. Обновление пакетов ```sudo apt update```
-2. Установка PostgreSQL ```sudo apt install postgresql postgresql-contrib```
-3. Запуск службы ```sudo systemctl start postgresql```
-```sudo systemctl enable postgresql```
-4. Проверка статуса ```sudo systemctl status postgresql```
+1. Обновление пакетов 
+- ```sudo apt update```
+2. Установка PostgreSQL 
+- ```sudo apt install postgresql postgresql-contrib```
+3. Запуск службы 
+- ```sudo systemctl start postgresql```
+- ```sudo systemctl enable postgresql```
+4. Проверка статуса 
+-```sudo systemctl status postgresql```
 
 ---
 ### Шаг 2: Клонирование проекта
@@ -60,11 +64,11 @@ REST API для новостного портала, построенное на
 ---
 
 ### Шаг 4: Установка зависимостей
-```pip install -r requirements.txt```
+1. ```pip install -r requirements.txt```
 **Если возникает ошибка с psycopg:**
 - Альтернативная установка
-```pip install --upgrade pip```
-```pip install "psycopg[binary]"```
+1. ```pip install --upgrade pip```
+2. ```pip install "psycopg[binary]"```
 
 ---
 
@@ -85,10 +89,21 @@ REST API для новостного портала, построенное на
 #### Создание БД (для всех ОС)
 В консоли `psql` необходимо выполнить следующее:
 
-```CREATE DATABASE newsdb;```
-```CREATE USER newsdbuser WITH PASSWORD 'root';```
-```ALTER DATABASE newsdb OWNER TO newsdbuser;```
-```GRANT ALL PRIVILEGES ON DATABASE newsdb TO newsdbuser;```
+```sql
+CREATE DATABASE newsdb;
+```
+
+```sql
+CREATE USER newsdbuser WITH PASSWORD 'root';
+```
+
+```sql
+ALTER DATABASE newsdb OWNER TO newsdbuser;
+```
+
+```sql
+GRANT ALL PRIVILEGES ON DATABASE newsdb TO newsdbuser;
+```
 
 - Выход: ```\q```
 
@@ -100,18 +115,29 @@ REST API для новостного портала, построенное на
 
 #### macOS / Linux
 - Создание файла 
-```touch .env```
-```nano .env```
+1. ```touch .env```
+2. ```nano .env```
 
 #### Windows
 - Создание файла
-```New-Item .env -ItemType File```
-```notepad .env```
+1. ```New-Item .env -ItemType File```
+2. ```notepad .env```
+
+---
 
 #### Содержимое `.env` (для всех ОС)
-```FLASK_ENV=development```
-```SECRET_KEY=your-secret-key-here```
-````DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/database-name```
+
+```
+FLASK_ENV=development
+```
+
+```python
+SECRET_KEY=your-secret-key-here
+```
+
+```python
+DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/database-name
+```
 
 ---
 
@@ -141,8 +167,8 @@ REST API для новостного портала, построенное на
 
 **Если возникает ошибка "Directory migrations already exists":**
 - Необходимо удалить папку migrations и попробовать снова
-```rm -rf migrations``` # macOS/Linux
-```rmdir /s migrations``` # Windows
+1. ```rm -rf migrations``` # macOS/Linux
+1. ```rmdir /s migrations``` # Windows
 
 ### Шаг 9: Запуск приложения
 ```python run.py```
