@@ -45,8 +45,13 @@ REST API для новостного портала, построенное на
 
 ---
 ### Шаг 2: Клонирование проекта
-```git clone https://github.com/yourusername/news-api.git```
-```cd news-api```
+```
+git clone https://github.com/yourusername/news-api.git
+```
+
+```
+cd news-api
+```
 
 
 ---
