@@ -1,36 +1,34 @@
 """
-Конфигурация для получения информации из переменной окружения (.env)
+Конфигурации для разных окружений.
 """
-import os # можно использовать python-dotenv
+import os
 from datetime import timedelta
 
 
 class Config:
-    """Основная конфигурация"""
-    SECRET_KEY = os.environ.get("SECRET_KEY", 'input-your-secretKey-here') 
+    """Базовая конфигурация."""
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JSON_AS_ASCII = True  # поддержка кирилицы в JSON-объектах
+    JSON_AS_ASCII = False
 
 
 class DevelopmentConfig(Config):
-    """Конфигурация для разработки"""
+    """Конфигурация для разработки."""
     DEBUG = True
-    SQLALCHEMY_DATABASE_URL = os.environ.get(
-        'DATABASE_URL',
-        'postgresql://username:password@localhost:5432/db-name'
-    )
+    # ПОДКЛЮЧЕНИЕ К POSTGRESQL
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg://newsdbuser:root@localhost:5432/newsdb'
 
 
 class TestingConfig(Config):
-    """Конфигурация для тестирования"""
+    """Конфигурация для тестирования."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URL = 'sqlite:///:memory:'  # чтобы не трогать нашу базу данных, при тестировании будет создана база данных SQLite (временно)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 
 class ProductionConfig(Config):
-    """Конфигурация для продакшена"""
+    """Конфигурация для продакшена."""
     DEBUG = False
-    SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 
 config_by_name = {
