@@ -31,7 +31,10 @@ def create_app(config_name=None):
     with app.app_context():
         # Регистрация Blueprints
         from app.routes.news_routes import news_bp
+        from app.routes.index_routers import index_bp
+
         app.register_blueprint(news_bp)
+        app.register_blueprint(index_bp)
         
         # Импорт моделей для миграций
         from app.models.news import News
